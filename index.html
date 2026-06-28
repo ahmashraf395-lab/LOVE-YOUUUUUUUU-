@@ -2,66 +2,68 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Cairo', sans-serif; background: #ffdadb; height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; overflow: hidden; }
-        .slide { background: #ffffff; padding: 40px; border-radius: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); width: 85%; max-width: 400px; text-align: center; display: none; border: 1px solid #ffd1dc; }
+        body { font-family: 'Cairo', sans-serif; background: #ffdadb; height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; }
+        .slide { background: #ffffff; padding: 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 85%; max-width: 400px; text-align: center; display: none; }
         .active { display: block; }
-        /* ستايل الزرار زي الصور */
-        button { background: #ff85a2; color: white; border: none; padding: 12px 50px; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 1rem; margin-top: 20px; transition: 0.3s; }
-        button:hover { background: #ff5c85; }
-        /* الـ Input بتاع الباسورد */
-        input { padding: 15px; border-radius: 20px; border: 1px solid #ffccd5; width: 80%; text-align: center; margin-bottom: 10px; font-size: 1rem; }
-        /* تأثير الكتابة */
-        .typewriter { font-size: 1.2rem; color: #555; line-height: 1.8; min-height: 100px; }
+        /* تكبير الخط */
+        h3 { font-size: 1.6rem; color: #ff5c85; }
+        p, .typewriter { font-size: 1.4rem; color: #444; line-height: 1.8; }
+        button { background: #ff85a2; color: white; border: none; padding: 15px 40px; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 1.2rem; margin-top: 20px; }
+        input { padding: 15px; border-radius: 20px; border: 2px solid #ffccd5; width: 80%; text-align: center; font-size: 1.2rem; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-<!-- صفحة 1: الباسورد -->
+<!-- الصوت -->
+<audio id="myAudio" loop><source src="11-Mehma_T2olo (1).mp3" type="audio/mpeg"></audio>
+
 <div id="s1" class="slide active">
     <h3>Enter Password 💌</h3>
     <input type="password" id="pass" placeholder="Enter your secret...">
     <br><button onclick="checkPass()">Unlock 💖</button>
 </div>
 
-<!-- صفحة 2: الوردة -->
 <div id="s2" class="slide">
     <div style="font-size: 80px;">🌹</div>
     <p>دوسي على الوردة</p>
     <button onclick="next(3)">Next 🎀</button>
 </div>
 
-<!-- صفحة 3: الرسالة -->
 <div id="s3" class="slide">
     <div id="msg" class="typewriter"></div>
     <button onclick="next(4)">Next 💖</button>
 </div>
 
-<!-- صفحة 4: الصور والعداد -->
 <div id="s4" class="slide">
-    <audio controls><source src="11-Mehma_T2olo (1).mp3" type="audio/mpeg"></audio>
     <div style="display:flex; overflow-x: auto; gap: 10px; padding: 15px 0;">
         <img src="IMG-20260628-WA0087.jpg" style="width:150px; border-radius:20px;">
         <img src="IMG-20260628-WA0088.jpg" style="width:150px; border-radius:20px;">
     </div>
-    <p style="font-size: 0.9rem;">We've been together for <span id="timer"></span></p>
+    <p style="font-size: 1.2rem;">We've been together for <br><span id="timer" style="font-weight: bold; color: #ff5c85;"></span></p>
     <button onclick="next(5)">Next 🎀</button>
 </div>
 
-<!-- صفحة 5: الختام -->
 <div id="s5" class="slide">
     <p class="typewriter" id="msg2"></p>
 </div>
 
 <script>
-    function checkPass() { if(document.getElementById('pass').value == '3320') next(2); else alert('خطأ!'); }
+    function checkPass() { 
+        if(document.getElementById('pass').value == '3320') {
+            next(2);
+            document.getElementById('myAudio').play(); // تشغيل الصوت هنا
+        } else { alert('الباسورد غلط!'); } 
+    }
+
     function next(n) { 
         document.querySelectorAll('.slide').forEach(s => s.classList.remove('active')); 
         document.getElementById('s'+n).classList.add('active');
         if(n == 3) typeWriter("من أول يوم عرفتك وأنا حاسس إن حياتي بقت أحلى.. بحبك يا كل دنيتي.", "msg");
         if(n == 5) typeWriter("على طول... مهما الدنيا ودتنا فين... هتفضلي أنتِ أغلى حد عندي. 🎀", "msg2");
     }
+
     function typeWriter(text, elementId) {
         let i = 0;
         let element = document.getElementById(elementId);
@@ -71,6 +73,7 @@
         }
         typing();
     }
+    
     const start = new Date("2025-01-30"); 
     document.getElementById('timer').innerText = Math.floor((new Date() - start) / (1000 * 60 * 60 * 24)) + " يوم";
 </script>
