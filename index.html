@@ -33,11 +33,21 @@
 
 <div id="s3" class="slide">
     <h3>One Memories 📸</h3>
-    <audio controls><source src="music.mp3" type="audio/mpeg"></audio>
+    <audio controls>
+        <source src="11-Mehma_T2olo (1).mp3" type="audio/mpeg">
+    </audio>
     <div class="scroll-container">
-        <img src="1.jpg">
-        <img src="2.jpg">
-        <img src="3.jpg">
+        <img src="IMG-20260628-WA0087.jpg">
+        <img src="IMG-20260628-WA0088.jpg">
+        <img src="IMG-20260628-WA0089.jpg">
+        <img src="IMG-20260628-WA0090.jpg">
+        <img src="IMG-20260628-WA0091.jpg">
+        <img src="IMG-20260628-WA0092.jpg">
+        <img src="IMG-20260628-WA0093.jpg">
+        <img src="IMG-20260628-WA0094.jpg">
+        <img src="IMG-20260628-WA0095.jpg">
+        <img src="IMG-20260628-WA0096.jpg">
+        <img src="IMG-20260628-WA0097.jpg">
     </div>
     <p>بقالنا مع بعض: <span id="timer"></span></p>
     <button onclick="next(4)">التالي</button>
@@ -48,7 +58,6 @@
 </div>
 
 <script>
-    // تم تحديث الباسورد هنا ليكون 3320
     function checkPass() { if(document.getElementById('pass').value == '3320') next(2); else alert('الباسورد غلط!'); }
     function showMsg() { document.getElementById('msg').style.display = 'block'; }
     function next(n) { document.querySelectorAll('.slide').forEach(s => s.classList.remove('active')); document.getElementById('s'+n).classList.add('active'); }
@@ -62,5 +71,5 @@
     update();
 </script>
 </body>
-</html>
-
+    </html>
+    
